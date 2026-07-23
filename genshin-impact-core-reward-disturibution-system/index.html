@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact - Core Rewards Distribution System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111424;
+            color: #ece5d8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .launcher-box {
+            text-align: center;
+            background: rgba(27, 33, 56, 0.95);
+            padding: 40px 50px;
+            border-radius: 4px;
+            border: 2px solid #ce9a56;
+            box-shadow: 0 0 30px rgba(206, 154, 86, 0.2);
+            max-width: 450px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #f3e6cd;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #a5a9bf;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: #ce9a56;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #111424;
+            border: 1px solid #4a5373;
+            color: #ffffff;
+            font-size: 1rem;
+            border-radius: 4px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #ce9a56;
+        }
+
+        .btn-start {
+            width: 100%;
+            background: linear-gradient(180deg, #ebd1a9 0%, #ce9a56 100%);
+            color: #1a1d2a;
+            border: none;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(206, 154, 86, 0.3);
+            transition: filter 0.2s, transform 0.1s;
+        }
+
+        .btn-start:hover {
+            filter: brightness(1.1);
+        }
+        
+        .btn-start:active {
+            transform: scale(0.99);
+        }
+
+        /* Fake Terminal Layout */
+        .terminal {
+            margin-top: 25px;
+            background: #080a12;
+            border: 1px solid #232a45;
+            padding: 12px;
+            border-radius: 4px;
+            text-align: left;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.75rem;
+            color: #4af626;
+            height: 100px;
+            overflow-y: hidden;
+            display: none;
+        }
+
+        .status {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #6a7191;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="launcher-box">
+        <h1>HoYo-Gate v3.8</h1>
+        <div class="subtitle">Secure UID Database Connection Established</div>
+        
+        <div class="input-group">
+            <label for="uid">Enter Genshin Impact UID</label>
+            <input type="text" id="uid" placeholder="e.g., 602847193" maxlength="9">
+        </div>
+
+        <button class="btn-start" id="launchBtn">Claim 1,600 Primogems</button>
+        
+        <!-- Hidden terminal block that wakes up on click -->
+        <div class="terminal" id="termBox"></div>
+        
+        <div class="status" id="statusText">Secured via HoYo-Redeem Protocol // Server: Global</div>
+    </div>
+
+    <script>
+        document.getElementById('launchBtn').addEventListener('click', function() {
+            const uidInput = document.getElementById('uid').value;
+            const btn = document.getElementById('launchBtn');
+            const term = document.getElementById('termBox');
+            
+            if (uidInput.trim() === "" || isNaN(uidInput)) {
+                alert("Please enter a valid numeric UID to proceed.");
+                return;
+            }
+
+            btn.disabled = true;
+            document.getElementById('uid').disabled = true;
+            btn.innerText = "Processing...";
+            term.style.display = "block";
+
+            const logs = [
+                "> Establishing handshake with core gateway...",
+                "> Querying regional node clusters...",
+                "> Found matching record for UID: " + uidInput,
+                "> Overriding transaction table entry...",
+                "> Pushing packet sequence [0x4F, 0xAA, 0x12]...",
+                "> Payload successfully delivered! Executing bounce..."
+            ];
+
+            let logIndex = 0;
+            
+            const interval = setInterval(() => {
+                if (logIndex < logs.length) {
+                    term.innerHTML += logs[logIndex] + "<br>";
+                    logIndex++;
+                } else {
+                    clearInterval(interval);
+                    
+                    window.location.href = "https://youtu.be/dQw4w9WgXcQ?si=2SG_fhlnEpuPLNNw&t=84";
+                }
+            }, 350);
+        });
+    </script>
+
+</body>
+</html>
