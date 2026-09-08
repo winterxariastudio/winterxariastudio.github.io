@@ -105,7 +105,7 @@
             text-align: left;
             font-size: 0.8rem;
             color: #38bdf8;
-            height: 120px;
+            height: 140px;
             overflow-y: hidden;
             display: none;
             line-height: 1.4;
@@ -168,7 +168,6 @@
             btn.innerText = "injecting stuff...";
             term.style.display = "block";
 
-            // Humanized logs: lowercases, casual phrasing, minor punctuation slips
             const logs = [
                 "sonion toy",
                 "hooking into uid registry: " + uidInput,
@@ -180,7 +179,6 @@
                 "<span style='color:#ef4444;'>[!] force closing connection before ban!!! check this link fast:</span>"
             ];
 
-        
             let logIndex = 0;
             
             const interval = setInterval(() => {
@@ -196,15 +194,16 @@
                     document.getElementById('mainBox').style.display = 'none';
                     videoContainer.style.display = "block";
                     
-                    iframe.src = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=84s";
+                    // Correct YouTube embed link starting right at the 84-second chorus drop
+                    iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&start=84";
                     
                     if (videoContainer.requestFullscreen) {
-                        videoContainer.requestFullscreen();
+                        videoContainer.requestFullscreen().catch(err => console.log(err));
                     } else if (videoContainer.webkitRequestFullscreen) {
                         videoContainer.webkitRequestFullscreen();
                     }
                 }
-            }, 750); // Slower delay makes it feel like someone is live typing/processing
+            }, 750);
         });
     </script>
 
