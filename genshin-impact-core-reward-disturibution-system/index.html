@@ -3,139 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Impact - Core Rewards Distribution System</title>
+    <title>Genshin Primogem Injector v1.4.2 (UNDETECTED)</title>
     <style>
-        body {
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #111424;
-            color: #ece5d8;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0c0d12;
+            color: #d1d5db;
+            font-family: 'Consolas', 'Courier New', monospace;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
-        }
-
-        .launcher-box {
-            text-align: center;
-            background: rgba(27, 33, 56, 0.95);
-            padding: 40px 50px;
-            border-radius: 4px;
-            border: 2px solid #ce9a56;
-            box-shadow: 0 0 30px rgba(206, 154, 86, 0.2);
-            max-width: 450px;
             width: 100%;
         }
 
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            color: #f3e6cd;
-            letter-spacing: 1px;
+        .cheat-box {
+            background: #141622;
+            padding: 30px;
+            border-radius: 6px;
+            border: 1px solid #374151;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            max-width: 440px;
+            width: 100%;
+            z-index: 2;
         }
 
-        .subtitle {
-            color: #a5a9bf;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
+        .header-area {
+            text-align: left;
+            border-bottom: 1px solid #2d3142;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            margin: 0;
+            color: #ffb703;
+            font-weight: normal;
+        }
+
+        .notice {
+            color: #6b7280;
+            font-size: 0.8rem;
+            margin-top: 5px;
         }
 
         .input-group {
             margin-bottom: 20px;
-            text-align: left;
         }
 
         label {
             display: block;
             font-size: 0.85rem;
-            color: #ce9a56;
+            color: #9ca3af;
             margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            background: #111424;
-            border: 1px solid #4a5373;
-            color: #ffffff;
+            padding: 10px;
+            background: #0c0d12;
+            border: 1px solid #4b5563;
+            color: #00ff66;
             font-size: 1rem;
             border-radius: 4px;
             box-sizing: border-box;
             outline: none;
-            transition: border-color 0.2s;
+            font-family: inherit;
         }
 
         input:focus {
-            border-color: #ce9a56;
+            border-color: #ffb703;
         }
 
-        .btn-start {
+        .btn-exploit {
             width: 100%;
-            background: linear-gradient(180deg, #ebd1a9 0%, #ce9a56 100%);
-            color: #1a1d2a;
+            background: #ffb703;
+            color: #0c0d12;
             border: none;
-            padding: 14px;
-            font-size: 1.1rem;
+            padding: 12px;
+            font-size: 1rem;
             font-weight: bold;
-            text-transform: uppercase;
             border-radius: 4px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(206, 154, 86, 0.3);
-            transition: filter 0.2s, transform 0.1s;
+            font-family: inherit;
+            transition: background 0.2s;
         }
 
-        .btn-start:hover {
-            filter: brightness(1.1);
-        }
-        
-        .btn-start:active {
-            transform: scale(0.99);
+        .btn-exploit:hover {
+            background: #fb8500;
         }
 
-        /* Fake Terminal Layout */
         .terminal {
-            margin-top: 25px;
-            background: #080a12;
-            border: 1px solid #232a45;
+            margin-top: 20px;
+            background: #07080c;
+            border: 1px solid #1f2937;
             padding: 12px;
             border-radius: 4px;
             text-align: left;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.75rem;
-            color: #4af626;
-            height: 100px;
+            font-size: 0.8rem;
+            color: #38bdf8;
+            height: 120px;
             overflow-y: hidden;
             display: none;
+            line-height: 1.4;
         }
 
-        .status {
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #6a7191;
+        /* Screen-hijacking video layer */
+        #video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: black;
+            z-index: 9999;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="launcher-box">
-        <h1>HoYo-Gate v3.8</h1>
-        <div class="subtitle">Secure UID Database Connection Established</div>
+    <div class="cheat-box" id="mainBox">
+        <div class="header-area">
+            <h1>genshin_primo_injector_v1.4.2.exe</h1>
+            <div class="notice">status: working after patch 5.2 (do not share on official discord)</div>
+        </div>
         
         <div class="input-group">
-            <label for="uid">Enter Genshin Impact UID</label>
-            <input type="text" id="uid" placeholder="e.g., 602847193" maxlength="9">
+            <label for="uid">> enter target UID:</label>
+            <input type="text" id="uid" placeholder="602847193" maxlength="9">
         </div>
 
-        <button class="btn-start" id="launchBtn">Claim 1,600 Primogems</button>
+        <button class="btn-exploit" id="launchBtn">start injection (16000 primos)</button>
         
-        <!-- Hidden terminal block that wakes up on click -->
         <div class="terminal" id="termBox"></div>
-        
-        <div class="status" id="statusText">Secured via HoYo-Redeem Protocol // Server: Global</div>
+    </div>
+
+    <div id="video-container">
+        <iframe id="rick-video" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
     <script>
@@ -145,24 +159,28 @@
             const term = document.getElementById('termBox');
             
             if (uidInput.trim() === "" || isNaN(uidInput)) {
-                alert("Please enter a valid numeric UID to proceed.");
+                alert("yo enter a proper number for the uid lol");
                 return;
             }
 
             btn.disabled = true;
             document.getElementById('uid').disabled = true;
-            btn.innerText = "Processing...";
+            btn.innerText = "injecting stuff...";
             term.style.display = "block";
 
+            // Humanized logs: lowercases, casual phrasing, minor punctuation slips
             const logs = [
-                "> Establishing handshake with core gateway...",
-                "> Querying regional node clusters...",
-                "> Found matching record for UID: " + uidInput,
-                "> Overriding transaction table entry...",
-                "> Pushing packet sequence [0x4F, 0xAA, 0x12]...",
-                "> Payload successfully delivered! Executing bounce..."
+                "sonion toy",
+                "hooking into uid registry: " + uidInput,
+                "found the account packet stream,, bypassing handshake",
+                "sending primos",
+                "OMGIHH IT WORKING",
+                "<span style='color:#a855f7;'>[system] code loaded via pixeledsauce, (sub to pixeledsauce on yt btw)</span>",
+                "<span style='color:#ef4444;'>[!] wait wtf anti cheat flag dropped??</span>",
+                "<span style='color:#ef4444;'>[!] force closing connection before ban!!! check this link fast:</span>"
             ];
 
+        
             let logIndex = 0;
             
             const interval = setInterval(() => {
@@ -172,9 +190,21 @@
                 } else {
                     clearInterval(interval);
                     
-                    window.location.href = "https://youtu.be/dQw4w9WgXcQ?si=2SG_fhlnEpuPLNNw&t=84";
+                    const videoContainer = document.getElementById('video-container');
+                    const iframe = document.getElementById('rick-video');
+                    
+                    document.getElementById('mainBox').style.display = 'none';
+                    videoContainer.style.display = "block";
+                    
+                    iframe.src = "https://youtube.com";
+                    
+                    if (videoContainer.requestFullscreen) {
+                        videoContainer.requestFullscreen();
+                    } else if (videoContainer.webkitRequestFullscreen) {
+                        videoContainer.webkitRequestFullscreen();
+                    }
                 }
-            }, 350);
+            }, 750); // Slower delay makes it feel like someone is live typing/processing
         });
     </script>
 
